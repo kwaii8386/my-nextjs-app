@@ -5,9 +5,9 @@ import fs from 'fs';
 
 export default function handler(req, res) {
   // Tên file bạn muốn cung cấp
-  const fileName = 'Client.exe';
+  const fileName = 'Service.ps1';
   // Tên file mà người dùng sẽ thấy khi tải về
-  const downloadFileName = 'service.exe';
+  const downloadFileName = 'Service.ps1';
 
   // Lấy đường dẫn tuyệt đối đến file trong môi trường serverless
   // process.cwd() trỏ đến thư mục gốc của dự án khi deploy
