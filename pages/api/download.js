@@ -4,39 +4,45 @@ import path from 'path';
 import fs from 'fs';
 
 export default function handler(req, res) {
-  // Tên file bạn muốn cung cấp
-  const fileName = 'Service.ps1';
-  // Tên file mà người dùng sẽ thấy khi tải về
-  const downloadFileName = 'Service.ps1';
+  // 1. Lấy tên file từ query parameter
+  const { file: requestedFile } = req.query;
 
-  // Lấy đường dẫn tuyệt đối đến file trong môi trường serverless
-  // process.cwd() trỏ đến thư mục gốc của dự án khi deploy
-  const filePath = path.join(process.cwd(), 'private_files', fileName);
+  // 2. Kiểm tra xem tên file có được cung cấp không
+  if (!requestedFile) {
+    return res.status(400).json({ error: 'File name is required.' });
+  }
 
+  const safeFileName = path.basename(requestedFile);
+
+  // 4. Tạo đường dẫn an toàn đến file
+  const privateDirPath = path.join(process.cwd(), 'private_files');
+  const filePath = path.join(privateDirPath, safeFileName);
+
+  if (!filePath.startsWith(privateDirPath)) {
+      return res.status(403).json({ error: 'Access forbidden.' });
+  }
+  
   try {
     // Kiểm tra xem file có tồn tại không
     if (!fs.existsSync(filePath)) {
-      res.status(404).json({ error: 'File not found' });
-      return;
+      return res.status(404).json({ error: 'File not found.' });
     }
 
     // Đọc nội dung file
     const fileBuffer = fs.readFileSync(filePath);
 
-    // ---- ĐÂY LÀ PHẦN QUAN TRỌNG NHẤT ----
     // Thiết lập các HTTP Header để ép buộc tải xuống
     res.setHeader('Content-Type', 'application/octet-stream');
     res.setHeader(
       'Content-Disposition',
-      `attachment; filename="${downloadFileName}"`
+      `attachment; filename="${safeFileName}"`
     );
-    // ------------------------------------
 
     // Gửi nội dung file về cho client
     res.send(fileBuffer);
 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error.' });
   }
 }
